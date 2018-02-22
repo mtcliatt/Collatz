@@ -11,8 +11,9 @@ const flags = {};
 
 /** Collatz */
 // Max number and max iterations for computing the Collatz array.
-flags.nMax = 100;
-flags.kMax = 160;
+flags.nStart = 1;
+flags.nMax = 800;
+flags.kMax = 800;
 
 
 /** Spacing */
@@ -53,8 +54,8 @@ flags.stopCollatzAtOne = true;
   render();
 
   function computeCollatz() {
-    for (let currentN = 1; currentN < flags.nMax; currentN++) {
-      let value = currentN;
+    for (let n = flags.nStart; n < flags.nStart + flags.nMax; n++) {
+      let value = n;
       const nCollatz = [value];
 
       for (let currentK = 1; currentK < flags.kMax; currentK++) {
