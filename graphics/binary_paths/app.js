@@ -18,7 +18,7 @@ flags.kMax = 800;
 
 /** Spacing */
 // Vertical spacing between each N.
-flags.nSpacing = 4;
+flags.nSpacing = 8;
 
 // Horizontal spacing between vertices of a given line.
 flags.kSpacing = 8;
