@@ -1,13 +1,18 @@
 'use strict';
 
-const colors = [
-  '#FFFFEE', '#F2F2F2', '#F0F0EE', '#E3E8EA', '#CCF1FF', '#E0DAF2', '#D7DCDD',
-  '#BBDDCC', '#99E3FF', '#AADDBB', '#B9ADD8', '#8899AA', '#9A79F2', '#557755',
-  '#2082A7', '#118833', '#007AA8', '#116688', '#513F7F', '#3D484C', '#005566',
-];
+/* red, blue, green, yellow */
+const colors = ['#F44336', '#2196F3', '#4CAF50', '#FFEB3B'];
 
 /** Flags object contains all app parameters, aside from the colors. */
 const flags = {};
+
+/** App. preferences */
+// Set to false to render paths for even numbers as well as odd numbers.
+flags.skipEvens  = false;
+
+// Set to false to repeat Collatz for kMax iterations instead of stopping early.
+flags.stopCollatzAtOne = true;
+
 
 /** Collatz */
 // Max number and max iterations for computing the Collatz array.
@@ -25,17 +30,6 @@ flags.kSpacing = 8;
 
 // Vertical change between each pair of successive vertices on a line.
 flags.yDelta = 8;
-
-
-/** Misc. preferences */
-// Set to false for randomly colored lines.
-flags.gradient = true;
-
-// Set to false to render paths for even numbers as well as odd numbers.
-flags.skipEvens  = false;
-
-// Set to false to repeat Collatz for kMax iterations instead of stopping early.
-flags.stopCollatzAtOne = true;
 
 
 /** Run the app. */
@@ -73,11 +67,7 @@ flags.stopCollatzAtOne = true;
 
   function render() {
     for (let n = 0; n < collatz.length; n += flags.skipEvens ? 2 : 1) {
-      if (flags.gradient) {
-        ctx.strokeStyle = colors[n % colors.length];
-      } else {
-        ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
-      }
+      ctx.strokeStyle = colors[n % colors.length];
 
       let currentY = (n + 1) * flags.nSpacing;
       ctx.beginPath();
