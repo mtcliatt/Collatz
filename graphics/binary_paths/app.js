@@ -13,6 +13,12 @@ flags.skipEvens  = false;
 // Set to false to repeat Collatz for kMax iterations instead of stopping early.
 flags.stopCollatzAtOne = true;
 
+// Set to true to see each line added one by one
+flags.animate = true;
+
+// ms between each line being drawn
+flags.animationTime = 20;
+
 
 /** Collatz */
 // Max number and max iterations for computing the Collatz array.
@@ -65,7 +71,14 @@ flags.yDelta = 8;
     }
   }
 
-  function render() {
+  function wait(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  async function render() {
+
     for (let n = 0; n < collatz.length; n += flags.skipEvens ? 2 : 1) {
       ctx.strokeStyle = colors[n % colors.length];
 
@@ -79,6 +92,10 @@ flags.yDelta = 8;
       }
 
       ctx.stroke();
+
+      if (flags.animate) {
+        await wait(flags.animationTime);
+      }
     }
   }
 })();
