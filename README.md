@@ -2,8 +2,8 @@
 
 <p align="center">
 <div align="center"><i>/binary_paths/screenshots:</i></div>
-<img src="binary_paths/screenshot.png">
-<img src="binary_paths/screenshot2.png">
+<img src="binary_paths/screenshots/screenshot.png">
+<img src="binary_paths/screenshots/screenshot2.png">
 </p>
 
 -------------------
