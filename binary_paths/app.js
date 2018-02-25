@@ -13,7 +13,7 @@ flags.animate = false;
 flags.animationTime = 200;
 
 // Set to true to view a tree structure of the graphic
-flags.drawTree = true;
+flags.drawTree = false;
 
 // Initial Y value of the tree (if flags.drawTree is true).
 flags.treeInitialY = 200;
@@ -22,7 +22,7 @@ flags.treeInitialY = 200;
 /* Collatz */
 // Inclusive range of values for N.
 flags.nStart = 1;
-flags.nStop = 800;
+flags.nStop = 1600;
 
 // Max iterations to spend calculating the path of for any initial value of N.
 flags.maxIterations = 800;
