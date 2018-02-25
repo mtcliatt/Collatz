@@ -6,6 +6,7 @@ const colors = ['#F44336', '#2196F3', '#4CAF50', '#FFEB3B'];
 /** Flags object contains all app parameters, aside from the colors. */
 const flags = {};
 
+
 /** App. preferences */
 // Set to false to render paths for even numbers as well as odd numbers.
 flags.skipEvens  = false;
@@ -14,10 +15,13 @@ flags.skipEvens  = false;
 flags.stopCollatzAtOne = true;
 
 // Set to true to see each line added one by one
-flags.animate = true;
+flags.animate = false;
 
 // ms between each line being drawn
 flags.animationTime = 20;
+
+// Set to true to view a tree structure of the graphic
+flags.drawTree = false;
 
 
 /** Collatz */
@@ -82,7 +86,8 @@ flags.yDelta = 8;
     for (let n = 0; n < collatz.length; n += flags.skipEvens ? 2 : 1) {
       ctx.strokeStyle = colors[n % colors.length];
 
-      let currentY = (n + 1) * flags.nSpacing;
+      // To draw the tree shape, start each line at the same Y.
+      let currentY = flags.drawTree ? 200 : (n + 1) * flags.nSpacing;
       ctx.beginPath();
       ctx.moveTo(0, currentY);
 
