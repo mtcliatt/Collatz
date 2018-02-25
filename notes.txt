@@ -1,7 +1,5 @@
 Tasks:
- 1) improve efficiency by memoizing the collatz array
- 2) README.md for the binary_paths directory
-
+ 1) README.md for the binary_paths directory
 
 
 Ideas:
@@ -10,7 +8,7 @@ Ideas:
 In Collatz, a number N goes to N/2 if its even and 3N+1 if its odd.
 If we ignore the parity rules, how easily can we get N back to itself with a series of /2 and/or *3+1 operations?
 
-It appears to be a nontrivial task to find a value of N that loops back to itself. With the help of a computer it's probably easy to construct these values.
+It appears to be a nontrivial task to find a value of N that loops back to itself, even with ignoring the parity rules. With the help of a computer it's probably easy to construct these values.
 
 After constructing/finding values that loop back to themselves, I want to see if the binary path of the loop can be a valid binary path and also if the same path is contained within another path of some N.
 
