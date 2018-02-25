@@ -18,7 +18,7 @@ flags.stopCollatzAtOne = true;
 flags.animate = true;
 
 // ms between each line being drawn
-flags.animationTime = 20;
+flags.animationTime = 200;
 
 // Set to true to view a tree structure of the graphic
 flags.drawTree = false;
@@ -96,11 +96,19 @@ flags.yDelta = 8;
         ctx.lineTo((k + 1) * flags.kSpacing, currentY);
       }
 
-      ctx.stroke();
-
       if (flags.animate) {
-        await wait(flags.animationTime);
+        const startTime = performance.now();
+        ctx.stroke();
+        const timeToDrawStroke = performance.now() - startTime;
+        const delay = flags.animationTime - timeToDrawStroke;
+
+        // If the delay is just a few ms, we can ignore it for performance.
+        if (delay > 5) {
+          await wait(flags.animationTime)
+        }
       }
+
+      ctx.stroke();
     }
   }
 })();
