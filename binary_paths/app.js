@@ -154,9 +154,10 @@ flags.yDelta = 8;
 
   console.log('Rendering the graphic.');
   let width = flags.kSpacing * flags.maxIterations;
-  let height = flags.nSpacing * (flags.nStop - flags.nStart);
+  // Add a little extra height so the last lines don't run off the screen.
+  let height = flags.nSpacing * (flags.nStop - flags.nStart + 20);
 
-  // Only use a canvas as wide as necessary, as larger canvases are slower.
+  // See if we can make the canvas less wide, since larger canvases are slower.
   if (flags.stopCollatzAtOne) {
     let maxK = 0;
 
@@ -166,9 +167,6 @@ flags.yDelta = 8;
 
     width = flags.kSpacing * (maxK + 2);
   }
-
-  // Add some room so the last few lines don't run off-screen.
-  height += 20 * flags.nSpacing;
 
   const context = initCanvas(width, height).getContext('2d');
 
