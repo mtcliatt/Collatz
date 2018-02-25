@@ -2,6 +2,7 @@
 
 <p align="center">
 <div align="center"><i>/binary_paths/screenshots:</i></div>
+<img src="binary_paths/screenshots/collatzcolors.png">
 <img src="binary_paths/screenshots/screenshot.png">
 <img src="binary_paths/screenshots/screenshot2.png">
 <img src="binary_paths/screenshots/collatzprimes.png">
