@@ -1,0 +1,24 @@
+Tasks:
+ 1) clean up the app with comments and removing shorthand
+ 2) improve efficiency by also calculating the binary collatz array
+ 3) improve efficiency by using a function with &1===0 for parity tests
+ 4) shorten animation interval by the amount of time it takes to draw the line
+
+
+Ideas:
+
+-- Loops --
+In Collatz, a number N goes to N/2 if its even and 3N+1 if its odd.
+If we ignore the parity rules, how easily can we get N back to itself with a series of /2 and/or *3+1 operations?
+
+It appears to be a nontrivial task to find a value of N that loops back to itself. With the help of a computer it's probably easy to construct these values.
+
+After constructing/finding values that loop back to themselves, I want to see if the binary path of the loop can be a valid binary path and also if the same path is contained within another path of some N.
+
+
+-- Binary path representations --
+Ideas on how to present/display the binary paths:
+ 1) repeat the line on the Y value of each prime factors of N
+ 2) repeat the line on a Y value corresponding to its prime factors
+   - how can we map all possible lists of prime factors to a single number?
+
