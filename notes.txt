@@ -1,7 +1,7 @@
 Tasks:
- 1) improve efficiency by also calculating the binary paths
- 2) replace code that gets the canvas with code that creates it
- 3) improve efficiency by memoizing the collatz array
+ 1) replace code that gets the canvas with code that creates it
+ 2) improve efficiency by memoizing the collatz array
+ 3) README.md for the binary_paths directory
 
 
 

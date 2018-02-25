@@ -91,22 +91,7 @@ flags.yDelta = 8;
     return canvas;
   };
 
-  console.log('Computing the Collatz Array.');
-  const collatzArray = computeCollatzArray();
-
-  const width = flags.kSpacing * flags.maxIterations;
-  const height = flags.nSpacing * (flags.nStop - flags.nStart);
-  const context = initCanvas(width, height).getContext('2d');
-
-  console.log('Rendering the graphic.');
-  
-  if (flags.animate) {
-    animatedRender(context, collatzArray);
-  } else {
-    render(context, collatzArray);
-  }
-
-  function render(context, paths) {
+  const render = (context, paths) => {
     for (let n = 0; n < paths.length; n++) {
       // Cycle through the available colors.
       context.strokeStyle = colors[n % colors.length];
@@ -125,7 +110,7 @@ flags.yDelta = 8;
     }
   }
 
-  async function animatedRender(context, paths) {
+  const animatedRender = async (context, paths) => {
     for (let n = 0; n < paths.length; n++) {
       const startTime = performance.now();
 
@@ -157,10 +142,38 @@ flags.yDelta = 8;
     }
   }
 
-  function wait(ms) {
+  const wait = ms => {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);
     });
   }
 
+  console.log('Computing the Collatz Array.');
+  const collatzArray = computeCollatzArray();
+
+  console.log('Rendering the graphic.');
+  let width = flags.kSpacing * flags.maxIterations;
+  let height = flags.nSpacing * (flags.nStop - flags.nStart);
+
+  // Only use a canvas as wide as necessary, as larger canvases are slower.
+  if (flags.stopCollatzAtOne) {
+    let maxK = 0;
+
+    for (const row of collatzArray) {
+      maxK = Math.max(maxK, row.length);
+    }
+
+    width = flags.kSpacing * (maxK + 2);
+  }
+
+  // Add some room so the last few lines don't run off-screen.
+  height += 20 * flags.nSpacing;
+
+  const context = initCanvas(width, height).getContext('2d');
+
+  if (flags.animate) {
+    animatedRender(context, collatzArray);
+  } else {
+    render(context, collatzArray);
+  }
 })();
