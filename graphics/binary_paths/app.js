@@ -15,7 +15,7 @@ flags.skipEvens  = false;
 flags.stopCollatzAtOne = true;
 
 // Set to true to see each line added one by one
-flags.animate = false;
+flags.animate = true;
 
 // ms between each line being drawn
 flags.animationTime = 20;
@@ -27,7 +27,7 @@ flags.drawTree = false;
 /** Collatz */
 // Max number and max iterations for computing the Collatz array.
 flags.nStart = 1;
-flags.nMax = 800;
+flags.nStop = 800;
 flags.kMax = 800;
 
 
@@ -48,7 +48,7 @@ flags.yDelta = 8;
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = flags.kMax * flags.kSpacing;;
-  canvas.height = flags.nMax * flags.nSpacing;
+  canvas.height = (flags.nStop - flags.nStart) * flags.nSpacing;
 
   /* Compute the Collatz array. */
   const collatz = [];
@@ -58,7 +58,7 @@ flags.yDelta = 8;
   render();
 
   function computeCollatz() {
-    for (let n = flags.nStart; n < flags.nStart + flags.nMax; n++) {
+    for (let n = flags.nStart; n < flags.nStop; n++) {
       let value = n;
       const nCollatz = [value];
 
