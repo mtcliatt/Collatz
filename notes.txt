@@ -1,7 +1,6 @@
 Tasks:
- 1) replace code that gets the canvas with code that creates it
- 2) improve efficiency by memoizing the collatz array
- 3) README.md for the binary_paths directory
+ 1) improve efficiency by memoizing the collatz array
+ 2) README.md for the binary_paths directory
 
 
 

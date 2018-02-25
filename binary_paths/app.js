@@ -81,9 +81,10 @@ flags.yDelta = 8;
     return collatzArray;
   };
 
-  /** Locates and sizes the canvas to the specified dimensions. */
+  /** Creates and returns a canvas with the specified dimensions. */
   const initCanvas = (width, height) => {
-    const canvas = document.getElementById('canvas');
+    const canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
 
     canvas.width = width;
     canvas.height = height;
