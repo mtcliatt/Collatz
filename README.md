@@ -1,8 +1,9 @@
 # Adventures in Collatz
 
 <p align="center">
+<div align="center"><i>/binary_paths/screenshots:</i></div>
 <img src="binary_paths/screenshot.png">
-<div align="center"><i>/binary_paths/screenshot.png</i></div>
+<img src="binary_paths/screenshot2.png">
 </p>
 
 -------------------
