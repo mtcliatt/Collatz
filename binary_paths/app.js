@@ -7,7 +7,7 @@ const flags = {};
 
 /* Display */
 // Set to true to see each line added one by one
-flags.animate = true;
+flags.animate = false;
 
 // ms between each line being drawn
 flags.animationTime = 200;
@@ -94,17 +94,19 @@ flags.yDelta = 8;
   console.log('Computing the Collatz Array.');
   const collatzArray = computeCollatzArray();
 
-  const calculatedWidth = flags.kSpacing * flags.maxIterations;
-  const calculatedHeight = flags.nSpacing * (flags.nStop - flags.nStart);
-
-  const canvas = initCanvas(calculatedWidth, calculatedHeight);
-  const context = canvas.getContext('2d');
+  const width = flags.kSpacing * flags.maxIterations;
+  const height = flags.nSpacing * (flags.nStop - flags.nStart);
+  const context = initCanvas(width, height).getContext('2d');
 
   console.log('Rendering the graphic.');
-  render(context, collatzArray);
+  
+  if (flags.animate) {
+    animatedRender(context, collatzArray);
+  } else {
+    render(context, collatzArray);
+  }
 
-  async function render(context, paths) {
-
+  function render(context, paths) {
     for (let n = 0; n < paths.length; n++) {
       // Cycle through the available colors.
       context.strokeStyle = colors[n % colors.length];
@@ -119,17 +121,38 @@ flags.yDelta = 8;
         context.lineTo(flags.kSpacing * k, y);
       }
 
-      if (flags.animate) {
-        const startTime = performance.now();
-        context.stroke();
-        const timeToDrawStroke = performance.now() - startTime;
-        const delay = flags.animationTime - timeToDrawStroke;
+      context.stroke();
+    }
+  }
 
-        // If the delay is just a few ms, we can ignore it for performance.
-        if (delay > 5) {
-          await wait(flags.animationTime)
-        }
+  async function animatedRender(context, paths) {
+    for (let n = 0; n < paths.length; n++) {
+      const startTime = performance.now();
+
+      // Cycle through the available colors.
+      context.strokeStyle = colors[n % colors.length];
+
+      // To draw the tree shape, start each line at the same Y.
+      let y = flags.drawTree ? 200 : flags.nSpacing * (n + 1);
+      context.beginPath();
+      context.moveTo(0, y);
+
+      for (let k = 0; k < paths[n].length - 1; k++) {
+        y += isEven(paths[n][k]) ? flags.yDelta : -flags.yDelta;
+        context.lineTo(flags.kSpacing * k, y);
       }
+
+      context.stroke();
+
+      // Wait less time based on how long it took to draw the line.
+      const timeToDrawLine = performance.now() - startTime;
+      const waitTime = flags.animationTime - timeToDrawLine;
+
+      // If the delay is just a few ms, we can ignore it for performance.
+      if (waitTime > 5) {
+        await wait(waitTime);
+      }
+
       context.stroke();
     }
   }

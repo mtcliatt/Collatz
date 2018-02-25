@@ -1,10 +1,7 @@
 Tasks:
- 1) clean up the app with comments and removing shorthand
- 2) improve efficiency by also calculating the binary collatz array
- 3) improve efficiency by using a function with &1===0 for parity tests
- 4) replace code that gets the canvas with code that creates it
- 5) improve efficiency by memoizing the collatz array
- 6) add time to compute path to amount decreased from animation interval
+ 1) improve efficiency by also calculating the binary paths
+ 2) replace code that gets the canvas with code that creates it
+ 3) improve efficiency by memoizing the collatz array
 
 
 
