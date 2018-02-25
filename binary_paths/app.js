@@ -13,7 +13,10 @@ flags.animate = false;
 flags.animationTime = 200;
 
 // Set to true to view a tree structure of the graphic
-flags.drawTree = false;
+flags.drawTree = true;
+
+// Initial Y value of the tree (if flags.drawTree is true).
+flags.treeInitialY = 200;
 
 
 /* Collatz */
@@ -154,6 +157,7 @@ flags.yDelta = 8;
 
   console.log('Rendering the graphic.');
   let width = flags.kSpacing * flags.maxIterations;
+
   // Add a little extra height so the last lines don't run off the screen.
   let height = flags.nSpacing * (flags.nStop - flags.nStart + 20);
 
@@ -166,6 +170,23 @@ flags.yDelta = 8;
     }
 
     width = flags.kSpacing * (maxK + 2);
+  }
+
+  if (flags.drawTree) {
+    let lowestStep = 0;
+
+    for (const row of collatzArray) {
+      let step = 0;
+
+      for (const val of row) {
+        step += isEven(val) ? -1: 1;
+        lowestStep = Math.min(lowestStep, step);
+      }
+    }
+
+    // The path that gets the lowest goes down lowestStep steps at its
+    // lowest point. The height needs to be just enough to see that.
+    height = flags.nSpacing * (-lowestStep + 2) + flags.treeInitialY;
   }
 
   const context = initCanvas(width, height).getContext('2d');
